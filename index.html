@@ -1,70 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>线条小狗</title>
+    <title>静态线条小狗</title>
     <style>
         body {
             background-color: #f0f0f0;
             margin: 0;
-            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         #dog {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
             width: 150px;
             height: 150px;
+            background-color: #fff;
+            border: 2px solid black;
+            border-radius: 50%;
+            position: relative;
         }
-        .line {
+        .ear {
+            width: 30px;
+            height: 50px;
+            background-color: #fff;
+            border: 2px solid black;
+            border-top-left-radius: 50%;
+            border-top-right-radius: 50%;
             position: absolute;
+            top: -30px;
+        }
+        .ear.left {
+            left: 25px;
+            transform: rotate(-45deg);
+        }
+        .ear.right {
+            right: 25px;
+            transform: rotate(45deg);
+        }
+        .eye {
+            width: 10px;
+            height: 10px;
             background-color: black;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+        .eye.left {
+            left: 50px;
+        }
+        .eye.right {
+            right: 50px;
         }
     </style>
 </head>
 <body>
-    <div id="dog"></div>
-    <script>
-        const dog = document.getElementById('dog');
-
-        function createLine(x1, y1, x2, y2) {
-            const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
-            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
-
-            const line = document.createElement('div');
-            line.className = 'line';
-            line.style.width = length + 'px';
-            line.style.height = '2px';
-            line.style.left = x1 + 'px';
-            line.style.top = y1 + 'px';
-            line.style.transformOrigin = 'left';
-            line.style.transform = 'rotate(' + angle + 'deg)';
-            dog.appendChild(line);
-        }
-
-        createLine(75, 150, 75, 100);
-        createLine(75, 100, 50, 75);
-        createLine(75, 100, 100, 75);
-        createLine(50, 75, 60, 65);
-        createLine(100, 75, 90, 65);
-        createLine(60, 65, 70, 55);
-        createLine(90, 65, 80, 55);
-        createLine(70, 55, 80, 55);
-
-        // 眼睛
-        const eye1 = document.createElement('div');
-        eye1.style.width = '10px';
-        eye1.style.height = '10px';
-        eye1.style.background = 'black';
-        eye1.style.borderRadius = '50%';
-        eye1.style.position = 'absolute';
-        eye1.style.left = '65px';
-        eye1.style.top = '30px';
-        dog.appendChild(eye1);
-
-        const eye2 = eye1.cloneNode(true);
-        eye2.style.left = '85px';
-        dog.appendChild(eye2);
-    </script>
+    <div id="dog">
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        <div class="eye left"></div>
+        <div class="eye right"></div>
+    </div>
 </body>
 </html>
