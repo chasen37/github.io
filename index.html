@@ -1,1 +1,70 @@
-<p>Hello 大家好</p> <p>我是霸都丶傲天，这是我的个人网站。 </p> <p>很高兴你来到这里, 你可以在以下的网站找到我</p> <ul> <li> <a href="https://www.zhihu.com/people/AJLoveChina">知乎</a> </li> <li> <a href="http://hejie.nigeerhuo.com">我的博客(已经不更细了,现在在知乎写文章)</a> </li> </ul>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>线条小狗</title>
+    <style>
+        body {
+            background-color: #f0f0f0;
+            margin: 0;
+            overflow: hidden;
+        }
+        #dog {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 150px;
+        }
+        .line {
+            position: absolute;
+            background-color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="dog"></div>
+    <script>
+        const dog = document.getElementById('dog');
+
+        function createLine(x1, y1, x2, y2) {
+            const length = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+            const angle = Math.atan2(y2 - y1, x2 - x1) * 180 / Math.PI;
+
+            const line = document.createElement('div');
+            line.className = 'line';
+            line.style.width = length + 'px';
+            line.style.height = '2px';
+            line.style.left = x1 + 'px';
+            line.style.top = y1 + 'px';
+            line.style.transformOrigin = 'left';
+            line.style.transform = 'rotate(' + angle + 'deg)';
+            dog.appendChild(line);
+        }
+
+        createLine(75, 150, 75, 100);
+        createLine(75, 100, 50, 75);
+        createLine(75, 100, 100, 75);
+        createLine(50, 75, 60, 65);
+        createLine(100, 75, 90, 65);
+        createLine(60, 65, 70, 55);
+        createLine(90, 65, 80, 55);
+        createLine(70, 55, 80, 55);
+
+        // 眼睛
+        const eye1 = document.createElement('div');
+        eye1.style.width = '10px';
+        eye1.style.height = '10px';
+        eye1.style.background = 'black';
+        eye1.style.borderRadius = '50%';
+        eye1.style.position = 'absolute';
+        eye1.style.left = '65px';
+        eye1.style.top = '30px';
+        dog.appendChild(eye1);
+
+        const eye2 = eye1.cloneNode(true);
+        eye2.style.left = '85px';
+        dog.appendChild(eye2);
+    </script>
+</body>
+</html>
